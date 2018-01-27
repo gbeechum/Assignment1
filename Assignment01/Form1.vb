@@ -28,10 +28,19 @@
         End If
     End Sub
 
-    Function CreatesFileForWriting() As Object
+    Sub WritesFile()
         Dim StreamWriter As System.IO.StreamWriter = System.IO.File.CreateText("input.txt")
-        Return StreamWriter
-    End Function
+        For Each item In Items
+            Dim strStringToSave As String
+            strStringToSave = item.strID & ";"
+            strStringToSave &= item.strDescription & ";"
+            strStringToSave &= item.strQuantity & ";"
+            strStringToSave &= item.strPrice & ";"
+            strStringToSave &= item.strFlat
+            StreamWriter.WriteLine(strStringToSave)
+        Next
+        StreamWriter.Close()
+    End Sub
 
     Function ReadsFile() As List(Of InventoryItem)
         Dim ReadList = New List(Of InventoryItem)
@@ -56,19 +65,42 @@
         End Try
     End Function
 
-    Function ValidateNum(sender As Object) As Boolean
-        If (Not IsNumeric(sender.text)) Then
-            MessageBox.Show("Must be a number")
-            sender.select()
-            Return False
+    Function ValidateNum() As Boolean
+        Dim blID As Boolean
+        Dim blDescription As Boolean
+        Dim blQuantity As Boolean
+        Dim blUnitPrice As Boolean
+        Dim strStringToShow As String
+        If (Not IsNumeric(txtId.Text)) Then
+            blID = False
+            strStringToShow &= "ID must be a number" & vbCrLf
         Else
-            Return True
+            blID = True
         End If
-    End Function
+        If (txtDescription.Text = "") Then
+            blDescription = False
+            strStringToShow &= "Description must be something" & vbCrLf
+        Else
+            blDescription = True
+        End If
+        If (Not IsNumeric(txtQuantity.Text)) Then
+            blQuantity = False
+            strStringToShow &= "Quantity must be a number" & vbCrLf
+        Else
+            blQuantity = True
+        End If
+        If (Not IsNumeric(txtUnitPrice.Text)) Then
+            blUnitPrice = False
+            strStringToShow &= "Unit Price must be a number"
+        Else
+            blUnitPrice = True
+        End If
+        If Not (blID And blQuantity And blUnitPrice And blDescription) Then
+            MessageBox.Show(strStringToShow)
+        End If
 
-    Private Sub IsNum(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtId.Validating, txtQuantity.Validating, txtUnitPrice.Validating
-        ValidateNum(sender)
-    End Sub
+        Return (blID And blQuantity And blUnitPrice And blDescription)
+    End Function
 
     Private Sub CalculateTotal(sender As Object, e As EventArgs) Handles btnCalculate.Click
         Dim strTotal As String = "Total Inventory Value on this item : "
@@ -103,6 +135,8 @@
         btnSave.Show()
         btnCancel.Show()
 
+        lblTotal.Text = Nothing
+
         Me.Text = "Inventory System - Add New"
     End Sub
 
@@ -122,6 +156,8 @@
         btnLeft.Show()
         btnRight.Show()
 
+        lblTotal.Text = Nothing
+
         btnSave.Hide()
         btnCancel.Hide()
 
@@ -130,5 +166,49 @@
 
     Private Sub btnAddNew_Click(sender As Object, e As EventArgs) Handles btnAddNew.Click
         AddNewScreen()
+    End Sub
+
+    Private Sub btnLeft_Click(sender As Object, e As EventArgs) Handles btnLeft.Click
+        If (intCurrentItem > 0) Then
+            intCurrentItem -= 1
+            ViewInventory()
+        Else
+            MessageBox.Show("No More Items")
+        End If
+    End Sub
+
+    Private Sub btnRight_Click(sender As Object, e As EventArgs) Handles btnRight.Click
+        If (intCurrentItem < Items.Count - 1) Then
+            intCurrentItem += 1
+            ViewInventory()
+        Else
+            MessageBox.Show("No More Items")
+        End If
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        If (Items.Count > 0) Then
+            If MessageBox.Show("Do you wish to cancel entry?", "", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                ViewInventory()
+            End If
+        Else
+            MessageBox.Show("At least one entry must be entered")
+        End If
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        If ValidateNum() Then
+            Items.Add(New InventoryItem(txtId.Text,
+                                        txtDescription.Text,
+                                        txtQuantity.Text,
+                                        txtUnitPrice.Text,
+                                        Convert.ToString(cbFlatPrice.Checked)))
+            intCurrentItem = Items.Count - 1
+            ViewInventory()
+        End If
+    End Sub
+
+    Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        WritesFile()
     End Sub
 End Class
