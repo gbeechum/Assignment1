@@ -48,7 +48,6 @@ Partial Class frmMain
         Me.lblId.Size = New System.Drawing.Size(30, 20)
         Me.lblId.TabIndex = 0
         Me.lblId.Text = "ID:"
-        Me.lblId.UseWaitCursor = True
         '
         'txtId
         '
@@ -56,7 +55,6 @@ Partial Class frmMain
         Me.txtId.Name = "txtId"
         Me.txtId.Size = New System.Drawing.Size(350, 26)
         Me.txtId.TabIndex = 1
-        Me.txtId.UseWaitCursor = True
         '
         'lblDescription
         '
@@ -66,7 +64,6 @@ Partial Class frmMain
         Me.lblDescription.Size = New System.Drawing.Size(93, 20)
         Me.lblDescription.TabIndex = 2
         Me.lblDescription.Text = "Description:"
-        Me.lblDescription.UseWaitCursor = True
         '
         'txtDescription
         '
@@ -74,7 +71,6 @@ Partial Class frmMain
         Me.txtDescription.Name = "txtDescription"
         Me.txtDescription.Size = New System.Drawing.Size(350, 26)
         Me.txtDescription.TabIndex = 3
-        Me.txtDescription.UseWaitCursor = True
         '
         'lblQuantity
         '
@@ -84,7 +80,6 @@ Partial Class frmMain
         Me.lblQuantity.Size = New System.Drawing.Size(72, 20)
         Me.lblQuantity.TabIndex = 4
         Me.lblQuantity.Text = "Quantity:"
-        Me.lblQuantity.UseWaitCursor = True
         '
         'txtQuantity
         '
@@ -92,7 +87,6 @@ Partial Class frmMain
         Me.txtQuantity.Name = "txtQuantity"
         Me.txtQuantity.Size = New System.Drawing.Size(350, 26)
         Me.txtQuantity.TabIndex = 5
-        Me.txtQuantity.UseWaitCursor = True
         '
         'lblUnitPrice
         '
@@ -102,7 +96,6 @@ Partial Class frmMain
         Me.lblUnitPrice.Size = New System.Drawing.Size(109, 20)
         Me.lblUnitPrice.TabIndex = 6
         Me.lblUnitPrice.Text = "Per Unit Price:"
-        Me.lblUnitPrice.UseWaitCursor = True
         '
         'txtUnitPrice
         '
@@ -110,7 +103,6 @@ Partial Class frmMain
         Me.txtUnitPrice.Name = "txtUnitPrice"
         Me.txtUnitPrice.Size = New System.Drawing.Size(350, 26)
         Me.txtUnitPrice.TabIndex = 7
-        Me.txtUnitPrice.UseWaitCursor = True
         '
         'cbFlatPrice
         '
@@ -121,7 +113,6 @@ Partial Class frmMain
         Me.cbFlatPrice.TabIndex = 8
         Me.cbFlatPrice.Text = "Flat Price Regardless of Quantity?"
         Me.cbFlatPrice.UseVisualStyleBackColor = True
-        Me.cbFlatPrice.UseWaitCursor = True
         '
         'btnCalculate
         '
@@ -131,7 +122,6 @@ Partial Class frmMain
         Me.btnCalculate.TabIndex = 9
         Me.btnCalculate.Text = "Calculate Inventory Item Value"
         Me.btnCalculate.UseVisualStyleBackColor = True
-        Me.btnCalculate.UseWaitCursor = True
         '
         'lblTotal
         '
@@ -140,7 +130,6 @@ Partial Class frmMain
         Me.lblTotal.Name = "lblTotal"
         Me.lblTotal.Size = New System.Drawing.Size(0, 20)
         Me.lblTotal.TabIndex = 12
-        Me.lblTotal.UseWaitCursor = True
         Me.lblTotal.Visible = False
         '
         'btnLeft
@@ -151,7 +140,6 @@ Partial Class frmMain
         Me.btnLeft.TabIndex = 14
         Me.btnLeft.Text = "<<"
         Me.btnLeft.UseVisualStyleBackColor = True
-        Me.btnLeft.UseWaitCursor = True
         Me.btnLeft.Visible = False
         '
         'btnRight
@@ -162,7 +150,6 @@ Partial Class frmMain
         Me.btnRight.TabIndex = 15
         Me.btnRight.Text = ">>"
         Me.btnRight.UseVisualStyleBackColor = True
-        Me.btnRight.UseWaitCursor = True
         Me.btnRight.Visible = False
         '
         'btnAddNew
@@ -173,7 +160,6 @@ Partial Class frmMain
         Me.btnAddNew.TabIndex = 16
         Me.btnAddNew.Text = "Add New Inventory Item"
         Me.btnAddNew.UseVisualStyleBackColor = True
-        Me.btnAddNew.UseWaitCursor = True
         Me.btnAddNew.Visible = False
         '
         'btnSave
@@ -184,7 +170,6 @@ Partial Class frmMain
         Me.btnSave.TabIndex = 18
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
-        Me.btnSave.UseWaitCursor = True
         '
         'btnCancel
         '
@@ -194,7 +179,6 @@ Partial Class frmMain
         Me.btnCancel.TabIndex = 19
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
-        Me.btnCancel.UseWaitCursor = True
         '
         'frmMain
         '
@@ -221,7 +205,6 @@ Partial Class frmMain
         Me.MaximizeBox = False
         Me.Name = "frmMain"
         Me.Text = "Inventory System - Add New"
-        Me.UseWaitCursor = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

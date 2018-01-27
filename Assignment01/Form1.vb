@@ -19,11 +19,12 @@
     End Structure
 
     Public Items As List(Of InventoryItem) = ReadsFile()
+    Dim intCurrentItem As Integer = Items.Count - 1
     Private Sub Main(sender As Object, e As EventArgs) Handles MyBase.Load
         If (Items.Count = 0) Then
             AddNewScreen()
         Else
-            ViewInventory(Items.Count)
+            ViewInventory()
         End If
     End Sub
 
@@ -105,18 +106,17 @@
         Me.Text = "Inventory System - Add New"
     End Sub
 
-    Private Sub ViewInventory(ItemIndex As Integer)
-        ItemIndex -= 1
+    Private Sub ViewInventory()
         txtId.Enabled = False
-        txtId.Text = Items(ItemIndex).strID
+        txtId.Text = Items(intCurrentItem).strID
         txtDescription.Enabled = False
-        txtDescription.Text = Items(ItemIndex).strDescription
+        txtDescription.Text = Items(intCurrentItem).strDescription
         txtQuantity.Enabled = False
-        txtQuantity.Text = Items(ItemIndex).strQuantity
+        txtQuantity.Text = Items(intCurrentItem).strQuantity
         txtUnitPrice.Enabled = False
-        txtUnitPrice.Text = Items(ItemIndex).strPrice
+        txtUnitPrice.Text = Items(intCurrentItem).strPrice
         cbFlatPrice.Enabled = False
-        cbFlatPrice.Checked = Convert.ToBoolean(Items(ItemIndex).strFlat)
+        cbFlatPrice.Checked = Convert.ToBoolean(Items(intCurrentItem).strFlat)
 
         btnAddNew.Show()
         btnLeft.Show()
@@ -125,7 +125,7 @@
         btnSave.Hide()
         btnCancel.Hide()
 
-        Me.Text = "Inventory System - Item " & Convert.ToString(ItemIndex + 1) & "/" & Convert.ToString(Items.Count)
+        Me.Text = "Inventory System - Item " & Convert.ToString(intCurrentItem + 1) & "/" & Convert.ToString(Items.Count)
     End Sub
 
     Private Sub btnAddNew_Click(sender As Object, e As EventArgs) Handles btnAddNew.Click
